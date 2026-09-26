@@ -1,0 +1,93 @@
+/* JMP-style Graph Builder — Chart-Centered Drag & Drop */
+
+/* ── Draggable chips in palette ── */
+.gb-drag-chip {
+    cursor: grab !important;
+    transition: all 0.12s ease !important;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+.gb-drag-chip:hover {
+    transform: translateX(3px);
+    box-shadow: none;
+    filter: brightness(0.96);
+}
+.gb-drag-chip:active {
+    cursor: grabbing !important;
+    opacity: 0.5;
+}
+.gb-drag-chip.dragging {
+    opacity: 0.25;
+    transform: scale(0.9);
+}
+
+/* ── Drop zones ── */
+.gb-drop-zone {
+    transition: all 0.15s ease !important;
+}
+.gb-drop-zone.drag-over {
+    background-color: rgba(0, 91, 170, 0.10) !important;
+    border-color: #005baa !important;
+    border-style: solid !important;
+    box-shadow: none;
+}
+
+/* ── Dropped chips in zones ── */
+.gb-zone-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 8px 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+    color: #0D47A1;
+    border: 1px solid #90CAF9;
+    cursor: default;
+    user-select: none;
+    animation: chipPop 0.2s ease-out;
+    white-space: nowrap;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.gb-zone-chip .chip-remove {
+    cursor: pointer;
+    font-size: 14px;
+    color: #e53935;
+    margin-left: 2px;
+    opacity: 0.5;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+}
+.gb-zone-chip .chip-remove:hover {
+    opacity: 1;
+}
+
+@keyframes chipPop {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* ── Zone placeholder text ── */
+.gb-zone-placeholder {
+    pointer-events: none;
+    user-select: none;
+}
+
+/* ── Chart type buttons ── */
+#gb-config-panel button[id^="gb-type-"]:hover {
+    background-color: #E3F2FD !important;
+    border-color: #1976D2 !important;
+    transform: scale(1.08);
+}
+#gb-config-panel button[id^="gb-type-"]:active {
+    transform: scale(0.96);
+}
+
+/* ── Variable palette scrollbar ── */
+#gb-variable-palette::-webkit-scrollbar { width: 5px; }
+#gb-variable-palette::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 3px; }
+#gb-variable-palette::-webkit-scrollbar-thumb { background: #c0c8d8; border-radius: 3px; }
